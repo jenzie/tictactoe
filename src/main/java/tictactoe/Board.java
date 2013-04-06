@@ -34,4 +34,13 @@ public class Board {
 			return true;
 		} return false;
 	}
+
+	public String toString() {
+		String board = null;
+		for(int row = 0; row < LENGTH; row++) {
+			for(int col = 0; col < WIDTH; col++) {
+				
+			}
+		} return board;
+	}
 }
