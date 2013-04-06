@@ -12,6 +12,7 @@ import java.util.Scanner;
 public class TicTacToe {
 	private static Scanner input;
 	private Player PlayerX, PlayerY;
+	private Board Game;
 
 	public static void main() {
 		input = new Scanner(System.in);
@@ -33,6 +34,7 @@ public class TicTacToe {
 	}
 
 	public TicTacToe(String otherPlayer) {
+		this.Game = new Board();
 		this.PlayerX = new HumanPlayer('X');
 
 		if(otherPlayer.equals("0"))
