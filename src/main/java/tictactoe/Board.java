@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class Board {
 	private final int LENGTH, WIDTH;
-	private ArrayList<ArrayList<Character>> board;
+	private Character[][] board;
 
 	public Board() {
 		this(3, 3);
@@ -21,6 +21,17 @@ public class Board {
 		LENGTH = length;
 		WIDTH = width;
 
-		this.board = new ArrayList<ArrayList<Character>>();
+		this.board = new Character[LENGTH][WIDTH];
+	}
+
+	private boolean isEmpty(int x, int y) {
+		return board[x][y] == null;
+	}
+
+	private boolean setTile(Character value, int x, int y) {
+		if(isEmpty(x, y)) {
+			this.board[x][y] = value;
+			return true;
+		} return false;
 	}
 }
