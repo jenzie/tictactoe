@@ -1,5 +1,9 @@
 package tictactoe;
 
+import tictactoe.players.GoodAIPlayer;
+import tictactoe.players.HumanPlayer;
+import tictactoe.players.Player;
+
 import java.util.Scanner;
 
 /**
@@ -38,7 +42,7 @@ public class TicTacToe {
 		this.PlayerX = new HumanPlayer('X');
 
 		if(otherPlayer.equals("0"))
-			this.PlayerY = new AIPlayer('Y');
+			this.PlayerY = new GoodAIPlayer('Y');
 		else
 			this.PlayerY = new HumanPlayer('Y');
 	}

@@ -1,4 +1,4 @@
-package tictactoe;
+package tictactoe.players;
 
 /**
  * @author: Jenny Zhen; jenz.rit@gmail.com

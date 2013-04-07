@@ -1,4 +1,4 @@
-package tictactoe;
+package tictactoe.players;
 
 /**
  * @author: Jenny Zhen; jenz.rit@gmail.com
@@ -7,12 +7,16 @@ package tictactoe;
  * project: tictactoe
  */
 
-public class AIPlayer extends Player {
-	public AIPlayer(Character id) {
+public class BadAIPlayer extends Player {
+	public BadAIPlayer(Character id) {
 		super(id);
 	}
 
 	public boolean playMove(int x, int y) {
 		return true;
+	}
+
+	private int[] chooseMove() {
+		return new int[2];
 	}
 }
