@@ -10,15 +10,8 @@ import tictactoe.Board;
  */
 
 public class GoodAIPlayer extends Player {
-	private final Board board;
-
 	public GoodAIPlayer(Character id, Board board) {
-		super(id);
-		this.board = board;
-	}
-
-	public boolean playMove(int x, int y) {
-		return true;
+		super(id, board);
 	}
 
 	public int[] chooseMove() {

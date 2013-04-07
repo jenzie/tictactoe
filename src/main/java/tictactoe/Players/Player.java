@@ -12,10 +12,12 @@ import tictactoe.Board;
 public abstract class Player {
 	private Character playerID;
 	private String type;
+	protected final Board board;
 
-	public Player(Character id) {
+	public Player(Character id, Board board) {
 		this.playerID = id;
 		this.type = "None";
+		this.board = board;
 	}
 
 	public Character getID() {
@@ -25,8 +27,6 @@ public abstract class Player {
 	public String getType() {
 		return this.type;
 	}
-
-	public abstract boolean playMove(int x, int y);
 
 	public abstract int[] chooseMove();
 

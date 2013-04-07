@@ -37,7 +37,7 @@ public class Board {
 		return this.WIDTH;
 	}
 
-	protected boolean validRange(int row, int col){
+	public boolean validRange(int row, int col){
 		return (row >= 0 && row < this.LENGTH) && (col >= 0 && col < this.WIDTH);
 	}
 
