@@ -60,7 +60,8 @@ public class TicTacToe {
 			if (difficulty.equals("0"))
 				this.PlayerY = new RandomAIPlayer('Y', this.Game);
 			else if (difficulty.equals("1"))
-				this.PlayerY = new OkayAIPlayer('Y', this.Game);
+				this.PlayerY = new OkayAIPlayer('Y', this.Game,
+						this.Game.getLength(), this.Game.getWidth());
 			else if (difficulty.equals("2"))
 				this.PlayerY = new GoodAIPlayer('Y', this.Game);
 			else
@@ -96,10 +97,11 @@ public class TicTacToe {
 					System.out.println(
 							this.gameOver(null, false, null, choice));
 					break;
-				} else
+				} else {
 					System.out.println(
 							this.gameOver(curPlayer, true, gameStatus, choice));
 					break;
+				}
 			} else {
 				players.add(curPlayer);
 				curPlayer = players.poll();
@@ -118,6 +120,9 @@ public class TicTacToe {
 
 		for(int moveX = -1; moveX <= 1; moveX++) {
 			for(int moveY = -1; moveY <= 0; moveY++) {
+				currX = lastX;
+				currY = lastY;
+
 				if((moveX == 0 && moveY == 0) || (moveX == 1 && moveY == 0))
 					continue;
 
@@ -141,16 +146,16 @@ public class TicTacToe {
 
 				//check if won and with what direction
 				if(total >= winLength) {
-					if(moveY == 0)
-						return "row";
 					if(moveX == 0)
+						return "row";
+					if(moveY == 0)
 						return "column";
 					if(moveX != 0 && moveY != 0)
 						return "diagonal";
 				}
 			}
 		}
-		if(Game.getValidMoves() == null)
+		if(Game.getValidMoves().length == 0)
 			return "tie";
 		return null;
 	}
