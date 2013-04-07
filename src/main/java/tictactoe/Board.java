@@ -17,8 +17,8 @@ public class Board {
 	}
 
 	public Board(int length, int width) {
-		LENGTH = length;
-		WIDTH = width;
+		this.LENGTH = length;
+		this.WIDTH = width;
 		this.numEmpty = LENGTH * WIDTH;
 
 		this.board = new Character[LENGTH][WIDTH];
@@ -29,26 +29,30 @@ public class Board {
 		}
 	}
 
-	private boolean isEmpty(int x, int y) {
-		return board[x][y] == null;
+	protected int getLength() {
+		return this.LENGTH;
+	}
+
+	protected int getWidth() {
+		return this.WIDTH;
+	}
+
+	protected boolean validRange(int row, int col){
+		return (row >= 0 && row < this.LENGTH) && (col >= 0 && col < this.WIDTH);
+	}
+
+	public boolean isEmpty(int x, int y) {
+		return board[x][y] == '_';
 	}
 
 	protected boolean setTile(Character value, int x, int y) {
+		if(!validRange(x, y))
+			return false;
 		if(isEmpty(x, y)) {
 			this.board[x][y] = value;
 			this.numEmpty--;
 			return true;
 		} return false;
-	}
-
-	public String toString() {
-		String board = "";
-		for(int row = 0; row < LENGTH; row++) {
-			for(int col = 0; col < WIDTH; col++) {
-				board += this.board[row][col] + " ";
-			}
-			board += "\n";
-		} return board;
 	}
 
 	public int[][] getValidMoves() {
@@ -64,5 +68,19 @@ public class Board {
 			}
 		}
 		return validMoves;
+	}
+
+	protected Character getPieceAt(int x, int y) {
+		return this.board[x][y];
+	}
+
+	public String toString() {
+		String board = "";
+		for(int row = 0; row < LENGTH; row++) {
+			for(int col = 0; col < WIDTH; col++) {
+				board += this.board[row][col] + " ";
+			}
+			board += "\n";
+		} return board;
 	}
 }

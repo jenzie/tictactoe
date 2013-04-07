@@ -11,10 +11,10 @@ import tictactoe.Board;
  * project: tictactoe
  */
 
-public class BadAIPlayerTest extends TestCase {
+public class RandomAIPlayerTest extends TestCase {
 
 	private final Board board = new Board();
-	private final BadAIPlayer bad = new BadAIPlayer('X', board, 100);
+	private final RandomAIPlayer bad = new RandomAIPlayer('X', board, 100);
 
 	public void testChooseMove() throws Exception {
 		int[] choice = bad.chooseMove();
