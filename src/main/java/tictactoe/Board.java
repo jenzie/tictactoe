@@ -11,6 +11,7 @@ public class Board {
 	private final int LENGTH, WIDTH;
 	private Character[][] board;
 	private int numEmpty = 0;
+	private int lastX, lastY;
 
 	public Board() {
 		this(3, 3);
@@ -51,6 +52,8 @@ public class Board {
 		if(isEmpty(x, y)) {
 			this.board[x][y] = value;
 			this.numEmpty--;
+			this.lastX = x;
+			this.lastY = y;
 			return true;
 		} return false;
 	}
@@ -68,6 +71,41 @@ public class Board {
 			}
 		}
 		return validMoves;
+	}
+
+	public int[][] getPlayerMoves(Character id, boolean otherPlayer) {
+		Character match = id;
+		int[][] moves = new int[this.LENGTH * this.WIDTH - numEmpty][];
+		int index = 0;
+
+		// get the id of the other player if requested
+		if(otherPlayer) {
+			for(int row = 0; row < this.LENGTH; row++) {
+				for(int col = 0; col < this.WIDTH; col++) {
+					if(!this.board[row][col].equals(id))
+						match = this.board[row][col];
+				}
+			}
+		}
+
+		// look for tiles that match the id
+		for(int row = 0; row < this.LENGTH; row++) {
+			for(int col = 0; col < this.WIDTH; col++) {
+				if(this.board[row][col].equals(match)) {
+					moves[index][0] = row;
+					moves[index][1] = col;
+					index++;
+				}
+			}
+		}
+		return moves;
+	}
+
+	public int[] getLastMove() {
+		int[] move = new int[2];
+		move[0] = this.lastX;
+		move[1] = this.lastY;
+		return move;
 	}
 
 	protected Character getPieceAt(int x, int y) {

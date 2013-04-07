@@ -14,7 +14,7 @@ import java.util.Scanner;
 
 public class TicTacToe {
 	private static Scanner input;
-	private Player PlayerX, PlayerY;
+	private Player PlayerX, PlayerO;
 	private Board Game;
 
 	public static void main(String[] args) {
@@ -58,16 +58,17 @@ public class TicTacToe {
 
 		if (otherPlayer.equals("0")) {
 			if (difficulty.equals("0"))
-				this.PlayerY = new RandomAIPlayer('Y', this.Game);
+				this.PlayerO = new RandomAIPlayer('Y', this.Game);
 			else if (difficulty.equals("1"))
-				this.PlayerY = new OkayAIPlayer('Y', this.Game,
+				this.PlayerO = new OkayAIPlayer('Y', this.Game,
 						this.Game.getLength(), this.Game.getWidth());
 			else if (difficulty.equals("2"))
-				this.PlayerY = new GoodAIPlayer('Y', this.Game);
+				this.PlayerO = new GoodAIPlayer('Y', this.Game,
+						this.Game.getLength(), this.Game.getWidth());
 			else
 				System.err.println("Fatal Error: Invalid AI difficulty.");
 		} else
-			this.PlayerY = new HumanPlayer('Y', this.Game);
+			this.PlayerO = new HumanPlayer('Y', this.Game);
 
 		this.gameLoop();
 	}
@@ -77,7 +78,7 @@ public class TicTacToe {
 		boolean madeMove = false;
 		Queue<Player> players = new LinkedList<Player>();
 		players.add(PlayerX);
-		players.add(PlayerY);
+		players.add(PlayerO);
 		Player curPlayer;
 
 		while(true) {
