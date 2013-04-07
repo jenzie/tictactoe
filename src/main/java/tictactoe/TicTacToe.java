@@ -1,7 +1,8 @@
 package tictactoe;
 
 import tictactoe.players.*;
-
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Scanner;
 
 /**
@@ -22,20 +23,20 @@ public class TicTacToe {
 
 		System.out.println("Welcome to Tic-Tac-Toe!");
 
-		while(true) {
+		while (true) {
 			System.out.println("Who would you like to play against?");
 			System.out.println("[0] The AI.\n[1] A Human.");
 
 			userInput1 = input.next();
-			if(userInput1.equals("0") || userInput1.equals(("1"))) {
-				if(userInput1.equals("0")) {
-					while(true) {
+			if (userInput1.equals("0") || userInput1.equals(("1"))) {
+				if (userInput1.equals("0")) {
+					while (true) {
 						System.out.println(
 								"What difficulty do you want the AI?");
 						System.out.println(
 								"[0] Easy.\n[1] Medium.\n[2] Difficult.");
 						userInput2 = input.next();
-						if(userInput2.equals("0") || userInput2.equals("1") ||
+						if (userInput2.equals("0") || userInput2.equals("1") ||
 								userInput2.equals("2")) {
 							new TicTacToe(userInput1, userInput2);
 							break;
@@ -54,12 +55,12 @@ public class TicTacToe {
 		this.Game = new Board();
 		this.PlayerX = new HumanPlayer('X');
 
-		if(otherPlayer.equals("0")) {
-			if(difficulty.equals("0"))
+		if (otherPlayer.equals("0")) {
+			if (difficulty.equals("0"))
 				this.PlayerY = new BadAIPlayer('Y', this.Game);
-			else if(difficulty.equals("1"))
+			else if (difficulty.equals("1"))
 				this.PlayerY = new OkayAIPlayer('Y', this.Game);
-			else if(difficulty.equals("2"))
+			else if (difficulty.equals("2"))
 				this.PlayerY = new GoodAIPlayer('Y', this.Game);
 			else
 				System.err.println("Fatal Error: Invalid AI difficulty.");
@@ -70,6 +71,30 @@ public class TicTacToe {
 	}
 
 	private void gameLoop() {
+		int[] choice = new int[2];
+		Queue<Player> players = new LinkedList<Player>();
+		players.add(PlayerX);
+		players.add(PlayerY);
 
+		while (true) {
+			Player curPlayer = players.poll();
+			System.out.println("Player " + curPlayer.getID() + " chooses a move.");
+			choice = curPlayer.chooseMove();
+			if(Game.setTile(curPlayer.getID(), choice[0], choice[1])) {
+				if(this.isWin()) {
+					System.out.println(this.gameOver(curPlayer));
+					break;
+				}
+			} else
+				players.add(curPlayer);
+		}
+	}
+
+	private boolean isWin() {
+		return false;
+	}
+
+	private String gameOver(Player winner) {
+		return "Game over!\nPlayer " + winner.getID() + " has won!\n";
 	}
 }

@@ -1,5 +1,7 @@
 package tictactoe.players;
 
+import tictactoe.Board;
+
 /**
  * @author: Jenny Zhen; jenz.rit@gmail.com
  * date: 04 05, 2013
@@ -8,15 +10,18 @@ package tictactoe.players;
  */
 
 public class GoodAIPlayer extends Player {
-	public GoodAIPlayer(Character id) {
+	private final Board board;
+
+	public GoodAIPlayer(Character id, Board board) {
 		super(id);
+		this.board = board;
 	}
 
 	public boolean playMove(int x, int y) {
 		return true;
 	}
 
-	private int[] chooseMove() {
+	public int[] chooseMove() {
 		return new int[2];
 	}
 }

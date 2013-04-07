@@ -1,5 +1,7 @@
 package tictactoe.players;
 
+import tictactoe.Board;
+
 /**
  * @author: Jenny Zhen; jenz.rit@gmail.com
  * date: 04 05, 2013
@@ -25,6 +27,8 @@ public abstract class Player {
 	}
 
 	public abstract boolean playMove(int x, int y);
+
+	public abstract int[] chooseMove();
 
 	public String printMove(int x, int y) {
 		return "Player" + this.playerID + " has placed a tile " +
