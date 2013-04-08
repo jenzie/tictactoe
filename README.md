@@ -52,7 +52,7 @@ Options to run the game:
 * Run the game using the given .jar file.  
     If using the console, run the .jar file using the following command:  
     
-    java -jar TicTacToe.jar  
+    java -jar jxz6853_tictactoe.jar  
 
 * Build the .jar using Maven.  
 
