@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8"/>
+	<title>Changelog for Tic-Tac-Toe</title>
+	<style type="text/css">
+		body {
+		font-family: Arial;
+		}
+		table {
+		border-collapse: collapse;
+		}
+		td {
+		border: 1px solid #CCCCCC;
+		}
+		td.date, .author, .committer {
+		white-space: nowrap;
+		}
+		.tag td {
+		border-width: 0px;
+		font-weight: bold;
+		padding-top: 30px;
+		padding-bottom: 7px;
+		}
+	</style>
+</head>
+<body>
+<h1>Changelog for Tic-Tac-Toe</h1>
+
+	<table class="changelog">
+		<tbody>
+		<tr><td class="date">2013-04-08 19:20:31 -0400</td><td>Fixed the command line run command.</td><td><span class="committer">Jenny Zhen</span></td></tr>
+		<tr><td class="date">2013-04-08 19:19:15 -0400</td><td>Fixed the formatting.</td><td><span class="committer">Jenny Zhen</span></td></tr>
+		<tr><td class="date">2013-04-08 19:08:06 -0400</td><td>Added the total time spent to the project metrics.</td><td><span class="committer">Jenny Zhen</span></td></tr>
+		<tr><td class="date">2013-04-08 18:44:57 -0400</td><td>Completed ReadMe.</td><td><span class="committer">Jenny Zhen</span></td></tr>
+		<tr><td class="date">2013-04-08 17:54:53 -0400</td><td>Fixed the formatting in the Table of Contents.</td><td><span class="committer">Jenny Zhen</span></td></tr>
+		<tr><td class="date">2013-04-08 17:52:03 -0400</td><td>Moved README to root of project.</td><td><span class="committer">Jenny Zhen</span></td></tr>
+		<tr><td class="date">2013-04-08 17:49:57 -0400</td><td>Included player information and basics of minimax.</td><td><span class="committer">Jenny Zhen</span></td></tr>
+		<tr><td class="date">2013-04-08 17:39:09 -0400</td><td>Removed debug print messages.  Finished writing tests for GoodAIPlayer.</td><td><span class="committer">Jenny Zhen</span></td></tr>
+		<tr><td class="date">2013-04-08 17:25:43 -0400</td><td>Fixed a bug in the AI where it was not calling minimizeScore after calling maximizeScore. AI now plays correctly.</td><td><span class="committer">Jenny Zhen</span></td></tr>
+		<tr><td class="date">2013-04-08 17:13:40 -0400</td><td>Rename README.MD to README.md</td><td><span class="committer">Jenny Zhen</span></td></tr>
+		<tr><td class="date">2013-04-08 17:12:46 -0400</td><td>Rename README.txt to README.MD</td><td><span class="committer">Jenny Zhen</span></td></tr>
+		<tr><td class="date">2013-04-08 17:10:07 -0400</td><td>Included instructions for options on how to run the game and the dependencies.</td><td><span class="committer">Jenny Zhen</span></td></tr>
+		<tr><td class="date">2013-04-08 16:55:36 -0400</td><td>Added a README that describes the basics of the projects so far.</td><td><span class="committer">Jenny Zhen</span></td></tr>
+		<tr><td class="date">2013-04-08 11:57:22 -0400</td><td>GoodAIPlayer does not pass the second test.</td><td><span class="committer">Jenny Zhen</span></td></tr>
+		<tr><td class="date">2013-04-08 03:47:40 -0400</td><td>Added documentation/comments to all files.</td><td><span class="committer">Jenny Zhen</span></td></tr>
+		<tr><td class="date">2013-04-08 00:50:36 -0400</td><td>Worked on GoodPlayer to implement a minmax algorithm.</td><td><span class="committer">Jenny Zhen</span></td></tr>
+		<tr><td class="date">2013-04-07 22:15:06 -0400</td><td>RandomAI and GoodAI both pass all unit tests to play a total of 3 games.</td><td><span class="committer">Jenny Zhen</span></td></tr>
+		<tr><td class="date">2013-04-07 19:59:04 -0400</td><td>Worked on GoodPlayer's algorithm for determining the 1st and 2nd moves in the game.</td><td><span class="committer">Jenny Zhen</span></td></tr>
+		<tr><td class="date">2013-04-07 18:32:36 -0400</td><td>OkayPlayer can choose moves adjacent to previous moves it made.</td><td><span class="committer">Jenny Zhen</span></td></tr>
+		<tr><td class="date">2013-04-07 18:24:32 -0400</td><td>Checking for a win displays direction of win (row, column, diagonal) or a tie. Started on OkayPlayer.</td><td><span class="committer">Jenny Zhen</span></td></tr>
+		<tr><td class="date">2013-04-07 17:05:09 -0400</td><td>Checking for a win and looping doesn't work yet; have a bug that only loops game once.</td><td><span class="committer">Jenny Zhen</span></td></tr>
+		<tr><td class="date">2013-04-07 14:54:17 -0400</td><td>Worked on the game loop. Can alternate between players and print win message.</td><td><span class="committer">Jenny Zhen</span></td></tr>
+		<tr><td class="date">2013-04-06 23:54:00 -0400</td><td>Modified the constructors of the AI Players to include the board, which is composed of private and protected methods.</td><td><span class="committer">Jenny Zhen</span></td></tr>
+		<tr><td class="date">2013-04-06 22:58:14 -0400</td><td>Modified the AI players to be 3 distinct AIs: Good, Okay, and Bad.</td><td><span class="committer">Jenny Zhen</span></td></tr>
+		<tr><td class="date">2013-04-06 00:23:34 -0400</td><td>Started the toString() for the board.</td><td><span class="committer">Jenny Zhen</span></td></tr>
+		<tr><td class="date">2013-04-06 00:12:44 -0400</td><td>Added players and getting user input for player types.</td><td><span class="committer">Jenny Zhen</span></td></tr>
+		<tr><td class="date">2013-04-05 22:29:54 -0400</td><td>Initial commit. Started working on the board implementation.</td><td><span class="committer">Jenny Zhen</span></td></tr>
+		</tbody>
+	</table>
+
+
+</body>
+</html>

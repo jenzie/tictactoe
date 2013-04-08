@@ -165,8 +165,8 @@ The following is a very rough estimate of time spent.
 This project is managed using Git and located on Github at:  
 https://github.com/jenzie/tictactoe
 
-The commit log can also be accessed in the log.txt file at the root 
-of the project directory.
+The commit log can also be accessed in the changelog.txt file in the target/
+directory of the project.
 
 7. Research
 ===========
