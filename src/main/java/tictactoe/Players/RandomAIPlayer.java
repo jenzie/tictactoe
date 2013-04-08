@@ -15,12 +15,12 @@ public class RandomAIPlayer extends Player {
 	private Random randomGen;
 
 	public RandomAIPlayer(Character id, Board board) {
-		super(id, board);
+		super(id, "RandomAI", board);
 		randomGen = new Random();
 	}
 
 	public RandomAIPlayer(Character id, Board board, int seed) {
-		super(id, board);
+		super(id, "RandomAI", board);
 		randomGen = new Random(seed);
 	}
 

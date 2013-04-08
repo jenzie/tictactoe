@@ -15,7 +15,7 @@ import java.util.Scanner;
 public class TicTacToe {
 	private static Scanner input;
 	private Player PlayerX, PlayerO;
-	private Board Game;
+	private Board game;
 
 	public static void main(String[] args) {
 		input = new Scanner(System.in);
@@ -53,22 +53,22 @@ public class TicTacToe {
 	}
 
 	public TicTacToe(String otherPlayer, String difficulty) {
-		this.Game = new Board();
-		this.PlayerX = new HumanPlayer('X', this.Game);
+		this.game = new Board();
+		this.PlayerX = new HumanPlayer('X', this.game);
 
 		if (otherPlayer.equals("0")) {
 			if (difficulty.equals("0"))
-				this.PlayerO = new RandomAIPlayer('Y', this.Game);
+				this.PlayerO = new RandomAIPlayer('Y', this.game);
 			else if (difficulty.equals("1"))
-				this.PlayerO = new OkayAIPlayer('Y', this.Game,
-						this.Game.getLength(), this.Game.getWidth());
+				this.PlayerO = new OkayAIPlayer('Y', this.game,
+						this.game.getLength(), this.game.getWidth());
 			else if (difficulty.equals("2"))
-				this.PlayerO = new GoodAIPlayer('Y', this.Game,
-						this.Game.getLength(), this.Game.getWidth());
+				this.PlayerO = new GoodAIPlayer('Y', this.game,
+						this.game.getLength(), this.game.getWidth());
 			else
 				System.err.println("Fatal Error: Invalid AI difficulty.");
 		} else
-			this.PlayerO = new HumanPlayer('Y', this.Game);
+			this.PlayerO = new HumanPlayer('Y', this.game);
 
 		this.gameLoop();
 	}
@@ -86,8 +86,8 @@ public class TicTacToe {
 			System.out.println(
 					"Player " + curPlayer.getID() + " chooses a move.");
 			choice = curPlayer.chooseMove();
-			madeMove = Game.setTile(curPlayer.getID(), choice[0], choice[1]);
-			System.out.println(Game.toString());
+			madeMove = game.setTile(curPlayer.getID(), choice[0], choice[1]);
+			System.out.println(game.toString());
 
 			if(madeMove) {
 				String gameStatus =
@@ -114,7 +114,7 @@ public class TicTacToe {
 	}
 
 	private String isOver(int lastX, int lastY, Character lastPlayer) {
-		int winLength = Math.min(Game.getLength(), Game.getWidth());
+		int winLength = Math.min(game.getLength(), game.getWidth());
 		int currX = lastX;
 		int currY = lastY;
 		int total = 0;
@@ -128,8 +128,8 @@ public class TicTacToe {
 					continue;
 
 				// back up in the check
-				while(Game.validRange(currX, currY) //check if match
-						&& Game.getPieceAt(currX, currY) == lastPlayer) {
+				while(game.validRange(currX, currY) //check if match
+						&& game.getPieceAt(currX, currY) == lastPlayer) {
 					currX += moveX;
 					currY += moveY;
 				}
@@ -138,8 +138,8 @@ public class TicTacToe {
 				total = 0; //reset total
 
 				// move forwards in the check
-				while(total < winLength && Game.validRange(currX, currY)
-						&& Game.getPieceAt(currX, currY) == lastPlayer) {
+				while(total < winLength && game.validRange(currX, currY)
+						&& game.getPieceAt(currX, currY) == lastPlayer) {
 					total += 1;
 					currX -= moveX;
 					currY -= moveY;
@@ -156,7 +156,7 @@ public class TicTacToe {
 				}
 			}
 		}
-		if(Game.getValidMoves().length == 0)
+		if(game.getValidMoves().length == 0)
 			return "tie";
 		return null;
 	}

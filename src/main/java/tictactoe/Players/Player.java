@@ -14,9 +14,9 @@ public abstract class Player {
 	private String type;
 	protected final Board board;
 
-	public Player(Character id, Board board) {
+	public Player(Character id, String type, Board board) {
 		this.playerID = id;
-		this.type = "None";
+		this.type = type;
 		this.board = board;
 	}
 

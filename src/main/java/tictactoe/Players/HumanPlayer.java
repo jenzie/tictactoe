@@ -14,7 +14,7 @@ import java.util.Scanner;
 public class HumanPlayer extends Player {
 	private static Scanner input;
 	public HumanPlayer(Character id, Board board) {
-		super(id, board);
+		super(id, "Human", board);
 		this.input = new Scanner(System.in);
 	}
 

@@ -46,7 +46,7 @@ public class Board {
 		return board[x][y] == '_';
 	}
 
-	protected boolean setTile(Character value, int x, int y) {
+	public boolean setTile(Character value, int x, int y) {
 		if(!validRange(x, y))
 			return false;
 		if(isEmpty(x, y)) {
