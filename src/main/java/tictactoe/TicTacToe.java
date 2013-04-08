@@ -81,7 +81,7 @@ public class TicTacToe {
 	 */
 	public TicTacToe(String otherPlayer, String difficulty) {
 		this.game = new Board();
-		
+
 		// create the first player as a human
 		this.PlayerX = new HumanPlayer('X', this.game);
 
