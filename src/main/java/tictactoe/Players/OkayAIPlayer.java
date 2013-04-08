@@ -18,17 +18,25 @@ public class OkayAIPlayer extends Player {
 	private Random randomGen;
 
 	public OkayAIPlayer(Character id, Board board, int length, int width) {
-		super(id, board);
+		super(id, "OkayAI", board);
 		numMoves = 0;
 		prevMoves = new int[length * width][2];
 		randomGen = new Random();
+	}
+
+	public OkayAIPlayer(
+			Character id, Board board, int length, int width, int seed) {
+		super(id, "OkayAI", board);
+		numMoves = 0;
+		prevMoves = new int[length * width][2];
+		randomGen = new Random(seed);
 	}
 
 	public int[] chooseMove() {
 		int[][] validMoves = board.getValidMoves();
 		int[] choice = new int[2];
 
-		if(prevMoves.length == 0) {
+		if(numMoves == 0) {
 			choice = validMoves[randomGen.nextInt(validMoves.length)];
 			prevMoves[numMoves] = choice;
 			numMoves++;
@@ -39,9 +47,9 @@ public class OkayAIPlayer extends Player {
 			int[] prevMove = prevMoves[index];
 
 			// loops through the x-direction
-			for(int row = -1; row < 1; row++) {
+			for(int row = -1; row <= 1; row++) {
 				// loops through the y-direction
-				for(int col = -1; col < 1; col++) {
+				for(int col = -1; col <= 1; col++) {
 					if(row == 0 && col == 0)
 						continue;
 
@@ -50,8 +58,8 @@ public class OkayAIPlayer extends Player {
 					choice[1] = col + prevMove[1];
 
 					// check if this tile adjacent to a previous tile is empty
-					if(board.isEmpty(choice[0], choice[1]) &&
-							board.validRange(choice[0], choice[1])) {
+					if(board.validRange(choice[0], choice[1]) &&
+							board.isEmpty(choice[0], choice[1])) {
 						prevMoves[numMoves] = choice;
 						numMoves++;
 						return choice;

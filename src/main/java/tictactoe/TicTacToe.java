@@ -14,8 +14,8 @@ import java.util.Scanner;
 
 public class TicTacToe {
 	private static Scanner input;
-	private Player PlayerX, PlayerO;
-	private Board game;
+	private static Player PlayerX, PlayerO;
+	private static Board game;
 
 	public static void main(String[] args) {
 		input = new Scanner(System.in);
@@ -58,17 +58,17 @@ public class TicTacToe {
 
 		if (otherPlayer.equals("0")) {
 			if (difficulty.equals("0"))
-				this.PlayerO = new RandomAIPlayer('Y', this.game);
+				this.PlayerO = new RandomAIPlayer('O', this.game);
 			else if (difficulty.equals("1"))
-				this.PlayerO = new OkayAIPlayer('Y', this.game,
+				this.PlayerO = new OkayAIPlayer('O', this.game,
 						this.game.getLength(), this.game.getWidth());
 			else if (difficulty.equals("2"))
-				this.PlayerO = new GoodAIPlayer('Y', this.game,
+				this.PlayerO = new GoodAIPlayer('O', this.game,
 						this.game.getLength(), this.game.getWidth());
 			else
 				System.err.println("Fatal Error: Invalid AI difficulty.");
 		} else
-			this.PlayerO = new HumanPlayer('Y', this.game);
+			this.PlayerO = new HumanPlayer('O', this.game);
 
 		this.gameLoop();
 	}
@@ -91,7 +91,7 @@ public class TicTacToe {
 
 			if(madeMove) {
 				String gameStatus =
-						isOver(choice[0], choice[1], curPlayer.getID());
+						isOver(choice[0], choice[1], curPlayer.getID(), game.getBoard(), game.getValidMoves().length);
 				if(gameStatus == null) {
 					players.add(curPlayer);
 				} else if(gameStatus.equals("tie")) {
@@ -113,8 +113,9 @@ public class TicTacToe {
 		}
 	}
 
-	private String isOver(int lastX, int lastY, Character lastPlayer) {
-		int winLength = Math.min(game.getLength(), game.getWidth());
+	public static String isOver(int lastX, int lastY, Character lastPlayer,
+								Character[][] board, int validMoves) {
+		int winLength = Math.min(board.length, board[0].length);
 		int currX = lastX;
 		int currY = lastY;
 		int total = 0;
@@ -129,7 +130,7 @@ public class TicTacToe {
 
 				// back up in the check
 				while(game.validRange(currX, currY) //check if match
-						&& game.getPieceAt(currX, currY) == lastPlayer) {
+						&& board[currX][currY] == lastPlayer) {
 					currX += moveX;
 					currY += moveY;
 				}
@@ -139,7 +140,7 @@ public class TicTacToe {
 
 				// move forwards in the check
 				while(total < winLength && game.validRange(currX, currY)
-						&& game.getPieceAt(currX, currY) == lastPlayer) {
+						&& board[currX][currY] == lastPlayer) {
 					total += 1;
 					currX -= moveX;
 					currY -= moveY;
@@ -156,7 +157,7 @@ public class TicTacToe {
 				}
 			}
 		}
-		if(game.getValidMoves().length == 0)
+		if(validMoves == 0)
 			return "tie";
 		return null;
 	}
@@ -174,5 +175,11 @@ public class TicTacToe {
 					winType + "!\n";
 		else
 			return "Game over!\nThere is a tie!\n";
+	}
+
+	public static Character getOtherPlayer(Character knownID) {
+		if(PlayerX.getID() == knownID){
+			return PlayerO.getID();
+		} return PlayerX.getID();
 	}
 }

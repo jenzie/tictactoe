@@ -73,20 +73,24 @@ public class Board {
 		return validMoves;
 	}
 
+	public Character getOtherPlayer(Character id) {
+		for(int row = 0; row < this.LENGTH; row++) {
+			for(int col = 0; col < this.WIDTH; col++) {
+				if(!this.board[row][col].equals(id) &&
+						!this.board[row][col].equals("_"))
+					return this.board[row][col];
+			}
+		} return null;
+	}
+
 	public int[][] getPlayerMoves(Character id, boolean otherPlayer) {
 		Character match = id;
 		int[][] moves = new int[this.LENGTH * this.WIDTH - numEmpty][];
 		int index = 0;
 
 		// get the id of the other player if requested
-		if(otherPlayer) {
-			for(int row = 0; row < this.LENGTH; row++) {
-				for(int col = 0; col < this.WIDTH; col++) {
-					if(!this.board[row][col].equals(id))
-						match = this.board[row][col];
-				}
-			}
-		}
+		if(otherPlayer)
+			match = this.getOtherPlayer(id);
 
 		// look for tiles that match the id
 		for(int row = 0; row < this.LENGTH; row++) {
@@ -120,5 +124,15 @@ public class Board {
 			}
 			board += "\n";
 		} return board;
+	}
+
+	public Character[][] getBoard() {
+		Character[][] clone = new Character[LENGTH][WIDTH];
+		for(int row = 0; row < LENGTH; row++){
+			for(int col = 0; col < WIDTH; col++){
+				clone[row][col] = board[row][col].charValue();
+			}
+		}
+		return clone;
 	}
 }
