@@ -154,6 +154,7 @@ The following is a very rough estimate of time spent.
 * Tests for all Players, except GoodAIPlayer: 100 minutes
 * GoodAIPlayer, GoodAIPlayerTest: 210 minutes
 * Documentation: 120 minutes
+* Total: 810 minutes (13.5 hours)
 
 6. Source Control
 =================
