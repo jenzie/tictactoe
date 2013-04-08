@@ -1,8 +1,6 @@
 package tictactoe.players;
 
 import tictactoe.Board;
-
-import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -12,11 +10,22 @@ import java.util.Random;
  * project: tictactoe
  */
 
+/**
+ * OkayAIPlayer
+ * Player that chooses moves adjacent to own tiles, but does not defend.
+ */
 public class OkayAIPlayer extends Player {
-	private int numMoves;
-	private int[][] prevMoves;
-	private Random randomGen;
+	private int numMoves; // number of moves made by this player
+	private int[][] prevMoves; // list of previous moves made by this player
+	private Random randomGen; // RGN
 
+	/**
+	 * Constructor.
+	 * @param id identification of this player.
+	 * @param board the game.
+	 * @param length the length of the board.
+	 * @param width the width of the board.
+	 */
 	public OkayAIPlayer(Character id, Board board, int length, int width) {
 		super(id, "OkayAI", board);
 		numMoves = 0;
@@ -24,6 +33,14 @@ public class OkayAIPlayer extends Player {
 		randomGen = new Random();
 	}
 
+	/**
+	 * Constructor is for testing purposes only.
+	 * @param id identification of this player.
+	 * @param board the game.
+	 * @param length the length of the board.
+	 * @param width the width of the board.
+	 * @param seed to maintain a repeatable game.
+	 */
 	public OkayAIPlayer(
 			Character id, Board board, int length, int width, int seed) {
 		super(id, "OkayAI", board);
@@ -32,10 +49,12 @@ public class OkayAIPlayer extends Player {
 		randomGen = new Random(seed);
 	}
 
+	@Override
 	public int[] chooseMove() {
 		int[][] validMoves = board.getValidMoves();
 		int[] choice = new int[2];
 
+		// base case to choose a random first move
 		if(numMoves == 0) {
 			choice = validMoves[randomGen.nextInt(validMoves.length)];
 			prevMoves[numMoves] = choice;
@@ -43,6 +62,7 @@ public class OkayAIPlayer extends Player {
 			return choice;
 		}
 
+		// case to choose a move adjacent to this player's previous moves
 		for(int index = 0; index < numMoves; index++) {
 			int[] prevMove = prevMoves[index];
 

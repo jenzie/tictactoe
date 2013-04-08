@@ -50,14 +50,23 @@ public class TicTacToe {
 						userInput2 = input.next();
 						if (userInput2.equals("0") || userInput2.equals("1") ||
 								userInput2.equals("2")) {
-							new TicTacToe(userInput1, userInput2);
+							TicTacToe tictactoe =
+									new TicTacToe(userInput1, userInput2);
+
+							// play the game using those two players
+							tictactoe.gameLoop();
+
 							return;
 						} else
 							System.err.println("Error: Invalid AI difficulty.");
 					}
 				} // otherwise, make two human players
 				else {
-					new TicTacToe(userInput1, null);
+					TicTacToe tictactoe = new TicTacToe(userInput1, null);
+
+					// play the game using those two players
+					tictactoe.gameLoop();
+
 					return;
 				}
 			} else
@@ -66,12 +75,13 @@ public class TicTacToe {
 	}
 
 	/**
-	 * Constructor; creates the players and then calls method to play game.
+	 * Constructor; creates the players.
 	 * @param otherPlayer type of the other player
 	 * @param difficulty difficulty of the AI, if otherPlayer is an AI
 	 */
 	public TicTacToe(String otherPlayer, String difficulty) {
 		this.game = new Board();
+		
 		// create the first player as a human
 		this.PlayerX = new HumanPlayer('X', this.game);
 
@@ -91,9 +101,6 @@ public class TicTacToe {
 		// create second player to be a human, as selected by user input
 		else
 			this.PlayerO = new HumanPlayer('O', this.game);
-
-		// play the game using those two players
-		this.gameLoop();
 	}
 
 	/**
@@ -242,5 +249,13 @@ public class TicTacToe {
 		if(PlayerX.getID() == knownID){
 			return PlayerO.getID();
 		} return PlayerX.getID();
+	}
+
+	/**
+	 * For testing purposes only.
+	 * @return the other player for GoodAIPlayer's tests.
+	 */
+	public Player getPlayerO() {
+		return PlayerO;
 	}
 }

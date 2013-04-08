@@ -11,15 +11,21 @@ import java.util.Scanner;
  * project: tictactoe
  */
 
+/**
+ * HumanPlayer
+ * Player that takes in user input for moves.
+ */
 public class HumanPlayer extends Player {
-	private static Scanner input;
+	private static Scanner input; // gets user input
+
+	/**
+	 * Constructor.
+	 * @param id identification of this player.
+	 * @param board the game.
+	 */
 	public HumanPlayer(Character id, Board board) {
 		super(id, "Human", board);
 		this.input = new Scanner(System.in);
-	}
-
-	public boolean playMove(int x, int y) {
-		return true;
 	}
 
 	@Override
