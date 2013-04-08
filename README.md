@@ -8,7 +8,7 @@ Table of Contents
 =================
 
 0. Overview
-1. Instructions
+1. Instructions  
 1.1 Dependencies
 2. Board & TicTacToe
 3. Player & Player types
