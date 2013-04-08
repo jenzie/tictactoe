@@ -27,6 +27,7 @@ players. As a result, this project may not be complete due to time constraints,
 with regards to the designing, testing, and documenting of said project.
 
 The project itself has the following completed:
+* A command-line interface.
 * The abstract Player class.
 * The HumanPlayer that extends Player.
 * The RandomAIPlayer that extends Player.
@@ -35,10 +36,13 @@ The project itself has the following completed:
 * The Tic-Tac-Toe class that runs the game using the Board and Player(s).
 * The RandomAIPlayerTest and OkayAIPlayerTest that tests chooseMove() from
   their respective Player class.
-
-The project itself has the following in progress:
 * The GoodAIPlayer that extends Player.
 * The GoodAIPlayerTest that tests chooseMove() from GoodAIPlayer.
+
+The project itself has the ideas for future revisions:
+* BadAIPlayer that chooses the first move in a list of valid moves.
+* Other AI algorithms/strategies relevant to Tic-Tac-Toe.
+* A GUI.
 
 1. Instructions
 ===============
@@ -120,3 +124,91 @@ the score. To simulate what an opponent would do, the AI assumes the
 opponent will play perfectly, and so has the simulated opponent minimize 
 the score (attempt to win). This means that the AI will always pick moves 
 where it can win, if possible, or in the worst case tie.
+
+As a result, GoodAIPlayer can only win or tie. However, to make that 
+possible, GoodAIPlayer has to know a lot more about the TicTacToe game, 
+including the win, lose, and tie conditions. Thus, high coupling can be an 
+issue with GoodAIPlayer, Board, and TicTacToe.
+
+4. Problems
+===========
+
+1. GoodAIPlayer did not choose the optimal moves, so a more concise weight 
+system had to be applied to the scoring process. If the AI would lose or 
+win immediately, that move has a higher priority than a move that will 
+win in two or more moves.
+2. Coupling became an issue when writing the tests for OkayAIPlayer and 
+GoodAIPlayer. The project was not designed to keep testing a priority. 
+Rather, the functionality of the project with its AIs were the priority. 
+Modifications had to be made to access modifiers for methods and members 
+of classes in order to make them visible for unit tests.
+
+5. Metrics
+==========
+
+The following is a very rough estimate of time spent.
+
+* Design: 60 minutes
+* Board & TicTacToe: 120 minutes
+* Player, HumanPlayer, RandomAIPlayer, OkayAIPlayer: 200 minutes
+* Tests for all Players, except GoodAIPlayer: 100 minutes
+* GoodAIPlayer, GoodAIPlayerTest: 210 minutes
+* Documentation: 120 minutes
+
+6. Source Control
+=================
+
+This project is managed using Git and located on Github at:  
+https://github.com/jenzie/tictactoe
+
+The commit log can also be accessed in the log.txt file at the root 
+of the project directory.
+
+7. Research
+===========
+
+Research was conducted to find the best moves for the first and second 
+moves. Additionally, different types of AIs were researched. That led to 
+the creation of the RandomAIPlayer, OkayAIPlayer, and GoodAIPlayer. A 
+fifth player type (HumanPlayer included) could be implemented as a 
+BadAIPlayer that chooses the first possible move. However, for the 
+purposes of producing a perfect game AI, most of the time was spent on 
+perfecting a GoodAIPlayer, as demonstrated in Section 5: Metrics.
+
+Sources:  
+* Tic-Tac-Toe AI  
+http://www.ntu.edu.sg/home/ehchua/programming/java/JavaGame_TicTacToe_AI.html
+* Game Trees  
+http://www.ocf.berkeley.edu/~yosenl/extras/alphabeta/alphabeta.html
+* Tic-Tac-Toe Strategy  
+http://ostermiller.org/tictactoeexpert.html
+* Tic-Tac-Toe Strategy Guide  
+http://www.chessandpoker.com/tic_tac_toe_strategy.html
+* Minimax and Alpha-Beta Pruning  
+http://students.cs.byu.edu/~cs670ta/Lectures/Minimax.html
+* Mixed Strategies and Minimax  
+http://students.cs.byu.edu/~cs670ta/Lectures/Minimax2.html
+
+8. Conclusion
+=============
+
+This project is a playable implementation of Tic-Tac-Toe. Players range 
+from human, bad, to good. Albeit, only one player type actually implements 
+a good Tic-Tac-Toe strategy compared to HumanPlayer, the GoodAIPlayer 
+will always win or tie. With time as one of the biggest constraints, the 
+design was neglected to factor in testabilty. Reusability was considered 
+to make the project as easily modified into similar games, such as 
+Connect 4, as easy as possible. However, good software engineering 
+practices should have considered all "-ilitiy" factors, no matter what 
+the constraints were. Additionally, testing was done at the completion 
+of every player, except for GoodAIPlayer where unit testing was started 
+early for debugging purposes. Test-Driven Development could have been 
+an option, but was not considered due to time constraints and the goal 
+of creating a functional program as the top priority. Lastly, the 
+documentation and quality assurance process was left towards the 
+completion of the project. If time was not constraint, as it was 
+repeatedly mentioned, documentation would've been done while classes 
+and methods within classes were written.
+
+As a whole, the project meets all requirements and more (because of the 
+various AIs implemented).
