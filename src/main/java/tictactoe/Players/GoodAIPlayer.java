@@ -72,7 +72,6 @@ public class GoodAIPlayer extends Player {
 		else {
 			int score = -2;
 			for(Integer[] validMove : validMovesList){
-				System.out.println(validMovesList.size());
 				// place a piece on scratch board
 				boardCopy[validMove[0]][validMove[1]] = getID();
 
