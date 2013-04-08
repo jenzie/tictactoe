@@ -1,8 +1,10 @@
 package tictactoe.players;
 
 import tictactoe.Board;
+import tictactoe.TicTacToe;
 
-import java.util.Random;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author: Jenny Zhen; jenz.rit@gmail.com
@@ -11,98 +13,220 @@ import java.util.Random;
  * project: tictactoe
  */
 
+/**
+ * GoodAIPlayer
+ * Player chooses moves based on a MinMax Algorithm.
+ * This player can only win or tie.
+ */
 public class GoodAIPlayer extends Player {
-	private int numMoves;
-	private int[][] prevMoves;
-	private int length, width;
+	private int numMoves; // number of moves this player made
+	private int[][] prevMoves; // list of moves this player have made
+	private int length, width; // dimensions of the board
+	private Character otherPlayer; // identification of the other player
 
+	/**
+	 * Constructor.
+	 * @param id identification of this player.
+	 * @param board the game.
+	 * @param length the length of the board.
+	 * @param width the width of the board.
+	 */
 	public GoodAIPlayer(Character id, Board board, int length, int width) {
 		super(id, "GoodAI", board);
 		numMoves = 0;
 		prevMoves = new int[length * width][2];
 		this.length = length;
 		this.width = width;
+		this.otherPlayer = TicTacToe.getOtherPlayer(this.getID());
 	}
 
-	public int[] chooseMove() {
-		int[] altPlayerLastMove = board.getLastMove();
-		int[][] validMoves = board.getValidMoves();
+	@Override
+	public int[] chooseMove(){
+		Integer[] move = new Integer[2];
 		int[] choice = new int[2];
+		int[][] validMoves = board.getValidMoves();
+		Character[][] boardCopy = board.getBoard();
 
-		// if this is our first move
-		if(prevMoves.length == 0) {
-			// get the center tile if possible
-			if(board.isEmpty((length/2), (width/2))) {
+		// want to convert list to a more convenient form
+		List<Integer[]> validMovesList = new ArrayList<Integer[]>();
+		for(int[] validMove : validMoves){
+			move = new Integer[validMove.length];
+			move[0] = validMove[0];
+			move[1] = validMove[1];
+			validMovesList.add(move);
+		}
+
+		// starting case; make the first move
+		if(validMovesList.size() >= length * width - 1) {
+			// go to center, heuristic
+			if(board.isEmpty(length/2, width/2)) {
 				choice[0] = length/2;
 				choice[1] = width/2;
-			} else { // otherwise, get a corner
-				choice[0] = length/2 - 1;
-				choice[1] = width/2 - 1;
-			}
-			prevMoves[numMoves] = choice;
-			numMoves++;
-			return choice;
-		}
-
-		// choose a move based on other player's moves
-		int winLength = Math.min(this.length, this.width);
-		int currX = altPlayerLastMove[0];
-		int currY = altPlayerLastMove[1];
-		int total = 0;
-
-		for(int moveX = -1; moveX <= 1; moveX++) {
-			for(int moveY = -1; moveY <= 1; moveY++) {
-				currX = altPlayerLastMove[0];
-				currY = altPlayerLastMove[1];
-
-				if((moveX == 0 && moveY == 0) || (moveX == 1 && moveY == 0))
-					continue;
-				/*
-				// back up in the check
-				while(board.validRange(currX, currY) //check if match
-						&& board.getPieceAt(currX, currY) == lastPlayer) {
-					currX += moveX;
-					currY += moveY;
-				}
-				currX -= moveX;
-				currY -= moveY;
-				total = 0; //reset total
-
-				// move forwards in the check
-				while(total < winLength && Game.validRange(currX, currY)
-						&& Game.getPieceAt(currX, currY) == lastPlayer) {
-					total += 1;
-					currX -= moveX;
-					currY -= moveY;
-				}
-
-				//check if won and with what direction
-				if(total >= winLength) {
-					if(moveX == 0)
-						return "row";
-					if(moveY == 0)
-						return "column";
-					if(moveX != 0 && moveY != 0)
-						return "diagonal";
-				}*/
+			} else {
+				choice[0] = 0;
+				choice[1] = 0;
 			}
 		}
 
-		return null;
+		// otherwise, apply Min-Max Theorem
+		else {
+			int score = -2;
+			for(Integer[] validMove : validMovesList){
+				System.out.println(validMovesList.size());
+				// place a piece on scratch board
+				boardCopy[validMove[0]][validMove[1]] = getID();
+
+				String status = TicTacToe.isOver(validMove[0], validMove[1],
+						getID(), boardCopy, validMovesList.size() - 1);
+				if(status != null && !status.equals("tie")){
+					choice[0] = validMove[0];
+					choice[1] = validMove[1];
+					break;
+				}
+
+				// create new move list without the move just made
+				List<Integer[]> newMoveList = new ArrayList<Integer[]>();
+				newMoveList.addAll(validMovesList);
+				newMoveList.remove(validMove);
+
+				int curScore = minimizeScore(newMoveList, makeCopy(boardCopy));
+				if(curScore > score){
+					score = curScore;
+					choice[0] = validMove[0];
+					choice[1] = validMove[1];
+				}
+
+				// undo move for future simulation
+				boardCopy[validMove[0]][validMove[1]] = '_';
+			}
+		} return choice;
 	}
 
-	private int[][] getEmptyNeighbors(int[] curTile, Character id){
-		int[][] neighbors = new int[length * width][2];
-		int index = 0;
+	/**
+	 * Minimize the possibility of a worst case loss by evaluating moves based
+	 * on a score. We want the AI to prefer winning over sooner, so leaf nodes
+	 * are given a lower score than branch nodes.
+	 *
+	 * @param validMoveList list of empty, valid tiles.
+	 * @param boardCopy copy of the game.
+	 * @return score evaluated based on valid moves.
+	 */
+	private int minimizeScore(
+			List<Integer[]> validMoveList, Character[][] boardCopy) {
+		int score = 2;
+		if(validMoveList.size() == 1) {
+			Integer[] move = validMoveList.get(0);
+			boardCopy[move[0]][move[1]] = otherPlayer;
+			String status = TicTacToe.isOver(move[0], move[1], otherPlayer,
+					boardCopy, 0);
+			if(status.equals("tie"))
+				score = 0;
+			else
+				score = -2;
+		} else {
+			for(Integer[] validMove : validMoveList) {
 
-		for(int moveX = -1; moveX <= 1; moveX++) {
-			for(int moveY = -1; moveY <= 1; moveY++) {
-				if(board.isEmpty(curTile[0] + moveX, curTile[1] + moveY)) {
-					neighbors[index][0] = curTile[0] + moveX;
-					neighbors[index][1] = curTile[1] + moveY;
+				// place piece on scratch board
+				boardCopy[validMove[0]][validMove[1]] = otherPlayer;
+
+				String status = TicTacToe.isOver(validMove[0], validMove[1],
+						otherPlayer, boardCopy, validMoveList.size() - 1);
+
+				if(status != null && status.equals("tie")) {
+					score = 0;
+					break;
+				} else if(status != null) {
+					score = -1;
+					break;
 				}
+
+				// create new move list without the move just made
+				List<Integer[]> newMoveList = new ArrayList<Integer[]>();
+				newMoveList.addAll(validMoveList);
+				newMoveList.remove(validMove);
+
+				int curScore = maximizeScore(newMoveList, makeCopy(boardCopy));
+				if(curScore < score)
+					score = curScore;
+
+				// undo move for future simulation
+				boardCopy[validMove[0]][validMove[1]] = '_';
+			}
+		} return score;
+	}
+
+	/**
+	 * Maximize the possibility of a best case win by evaluating moves based
+	 * on a score.
+	 * @param validMoveList list of empty, valid tiles.
+	 * @param boardCopy copy of the game.
+	 * @return score evaluated based on valid moves.
+	 */
+	private int maximizeScore(List<Integer[]> validMoveList,
+							  Character[][] boardCopy) {
+		int score = -2;
+
+		if(validMoveList.size() == 1) {
+			Integer[] move = validMoveList.get(0);
+			boardCopy[move[0]][move[1]] = getID();
+			String status = TicTacToe.isOver(move[0], move[1], getID(),
+					boardCopy, 0);
+			if(status.equals("tie"))
+				score = 0;
+			else
+				score = 1;
+		} else{
+			for(Integer[] validMove : validMoveList){
+
+				// place piece on scratch board
+				boardCopy[validMove[0]][validMove[1]] = getID();
+
+				String status = TicTacToe.isOver(validMove[0], validMove[1],
+						getID(), boardCopy, validMoveList.size() - 1);
+				if(status != null && status.equals("tie")) {
+					score = 0;
+					break;
+				} else if(status != null) {
+					score = 2;
+					break;
+				}
+
+				// create new move list without the move just made
+				List<Integer[]> newMoveList = new ArrayList<Integer[]>();
+				newMoveList.addAll(validMoveList);
+				newMoveList.remove(validMove);
+
+				int curScore = minimizeScore(newMoveList, makeCopy(boardCopy));
+				if(curScore > score)
+					score = curScore;
+
+				// undo move for future simulation
+				boardCopy[validMove[0]][validMove[1]] = '_';
+			}
+		} return score;
+	}
+
+	/**
+	 * Gets a deep copy of the board.
+	 * @param boardCopy safe copy of the board from Board.
+	 * @return a copy of the game.
+	 */
+	private Character[][] makeCopy(Character[][] boardCopy) {
+		Character[][] clone =
+				new Character[boardCopy.length][boardCopy[0].length];
+		for(int row = 0; row < boardCopy.length; row++){
+			for(int col = 0; col < boardCopy[1].length; col++){
+				clone[row][col] = boardCopy[row][col].charValue();
 			}
 		}
-		return neighbors;
+		return clone;
+	}
+
+	/**
+	 * For testing GoodAIPlayer only.
+	 * @param board board to set to.
+	 */
+	public void setBoard(Board board) {
+		super.board = board;
 	}
 }
