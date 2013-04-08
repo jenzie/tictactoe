@@ -11,10 +11,18 @@ import tictactoe.Board;
  * project: tictactoe
  */
 
+/**
+ * OkayAIPlayerTest.
+ * Tests the OkayAIPlayer for two games.
+ */
 public class OkayAIPlayerTest extends TestCase {
 	private final Board board = new Board();
 	private OkayAIPlayer okay;
 
+	/**
+	 * Tests the chooseMove() method where this AI wins.
+	 * @throws Exception
+	 */
 	public void testChooseMoveWin() throws Exception {
 		int[] choice = new int[2];
 		okay = new OkayAIPlayer('X', board, 3, 3, 100);
@@ -39,6 +47,10 @@ public class OkayAIPlayerTest extends TestCase {
 		board.setTile(okay.getID(), choice[0], choice[1]);
 	}
 
+	/**
+	 * Tests the chooseMove() method where this AI loses.
+	 * @throws Exception
+	 */
 	public void testChooseMoveLose() throws Exception {
 		int[] choice = new int[2];
 		okay = new OkayAIPlayer('X', board, 3, 3, 50);
