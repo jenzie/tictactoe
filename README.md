@@ -47,16 +47,19 @@ The project itself has the ideas for future revisions:
 1. Instructions
 ===============
 
-Options to run the game:
-1. From the project structure, run using Tic-Tac-Toe as main().
-2. Run the game using the given .jar file.  
-   If using the console, run the .jar file using the following command:  
-        java -jar TicTacToe.jar
-3. Build the .jar using Maven.  
-        mvn package    
+Options to run the game:  
+* From the project structure, run using Tic-Tac-Toe as main().  
+* Run the game using the given .jar file.  
+    If using the console, run the .jar file using the following command:  
+    
+    java -jar TicTacToe.jar  
 
-Note: All numbering in the game starts at zero. 
-Note: A valid move is defined as an empty tile on the board.
+* Build the .jar using Maven.  
+
+    mvn package  
+
+Note: All numbering in the game starts at zero.  
+Note: A valid move is defined as an empty tile on the board.  
 Note: For testing purposes, all random number generators created using 
 Java's Random are given a seed to ensure repeatable tests.
 
