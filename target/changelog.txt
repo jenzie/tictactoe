@@ -1,5 +1,16 @@
 Changelog for Tic-Tac-Toe
 
+2013-04-09 09:17:22 -0400    Updated ideas for future revisions. (Jenny Zhen)
+2013-04-09 09:14:28 -0400    Updated metrics to factor in the ReadMe. (Jenny Zhen)
+2013-04-09 09:09:58 -0400    Updated the conclusion for the ReadMe. (Jenny Zhen)
+2013-04-09 09:00:59 -0400    Updated pom.xml. (Jenny Zhen)
+2013-04-09 08:55:08 -0400    Updated comments in Player. (Jenny Zhen)
+2013-04-09 08:46:45 -0400    Added a comment to chooseMove(). (Jenny Zhen)
+2013-04-09 08:45:44 -0400    Update OkayAIPlayer.java (Jenny Zhen)
+2013-04-09 08:41:52 -0400    Added range check on user input. (Jenny Zhen)
+2013-04-09 08:36:42 -0400    Added lines of product and test code. (Jenny Zhen)
+2013-04-08 20:06:33 -0400    Fixed the numbering. (Jenny Zhen)
+2013-04-08 19:48:06 -0400    Added the .jar, changelog.txt, and changelog.html. (Jenny Zhen)
 2013-04-08 19:20:31 -0400    Fixed the command line run command. (Jenny Zhen)
 2013-04-08 19:19:15 -0400    Fixed the formatting. (Jenny Zhen)
 2013-04-08 19:08:06 -0400    Added the total time spent to the project metrics. (Jenny Zhen)
