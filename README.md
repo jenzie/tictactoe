@@ -39,9 +39,10 @@ The project itself has the following completed:
 * The GoodAIPlayer that extends Player.
 * The GoodAIPlayerTest that tests chooseMove() from GoodAIPlayer.
 
-The project itself has the ideas for future revisions:
+The project itself has the following ideas for future revisions:
 * BadAIPlayer that chooses the first move in a list of valid moves.
 * Other AI algorithms/strategies relevant to Tic-Tac-Toe.
+* Playing against two AIs.
 * A GUI.
 
 2. Instructions
