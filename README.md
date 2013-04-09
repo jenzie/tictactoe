@@ -156,16 +156,17 @@ The following is a very rough estimate of time spent.
 * Player, HumanPlayer, RandomAIPlayer, OkayAIPlayer: 200 minutes
 * Tests for all Players, except GoodAIPlayer: 100 minutes
 * GoodAIPlayer, GoodAIPlayerTest: 210 minutes
-* Documentation: 120 minutes
+* All Documentation: 120 minutes
 * Total: 810 minutes (13.5 hours)
 
 The following is the source lines of code written.
 * Product: 838
 * Test: 168
-* Total: 1006
+* Documentation (ReadMe): 189
+* Total: 1195
 
-The following is the lines of code per hour.
-* 74.52 lines of code/hour
+The following is the total source lines of code per hour.
+* 88.52 sloc/hr
 
 Note: A lot of the time was spent debugging GoodAIPlayer. The issue was 
 simply calling the wrong function.
