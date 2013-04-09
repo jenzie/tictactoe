@@ -42,7 +42,7 @@ public class HumanPlayer extends Player {
 				System.out.println("What column do you want to move to?");
 				choice[1] = Integer.parseInt(input.nextLine());
 
-				if(board.isEmpty(choice[0], choice[1]))
+				if(board.validRange(choice[0], choice[1]) && board.isEmpty(choice[0], choice[1]))
 					return choice;
 				System.err.println("Error: Invalid move!");
 			} catch(NumberFormatException ignored){
