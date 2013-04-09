@@ -7,18 +7,18 @@ language: Java
 Table of Contents
 =================
 
-0. Overview
-1. Instructions  
-1.1 Dependencies
-2. Board & TicTacToe
-3. Player & Player types
-4. Problems
-5. Metrics
-6. Source Control
-7. Research
-8. Conclusion
+1. Overview  
+2. Instructions  
+2.1 Dependencies
+3. Board & TicTacToe
+4. Player & Player types
+5. Problems
+6. Metrics
+7. Source Control
+8. Research
+9. Conclusion
 
-0. Overview
+1. Overview
 ===============
 
 For this research project, a limited amount of time was given to conduct
@@ -44,7 +44,7 @@ The project itself has the ideas for future revisions:
 * Other AI algorithms/strategies relevant to Tic-Tac-Toe.
 * A GUI.
 
-1. Instructions
+2. Instructions
 ===============
 
 Options to run the game:  
@@ -63,12 +63,12 @@ Note: A valid move is defined as an empty tile on the board.
 Note: For testing purposes, all random number generators created using 
 Java's Random are given a seed to ensure repeatable tests.
 
-1.1 Dependencies
+2.1 Dependencies
 ----------------
 * Java 1.6
 * Maven 3.0
 
-2. Board & Tic-Tac-Toe
+3. Board & Tic-Tac-Toe
 ======================
 
 The board is implemented as a Character[][] with a default length and width 
@@ -85,7 +85,7 @@ because only Tic-Tac-Toe has to know the rules of the game, with the
 exception of GoodAIPlayer. Tic-Tac-Toe will determine the game over and 
 win messages.
 
-3. Players & Player types
+4. Players & Player types
 =========================
 
 HumanPlayer
@@ -133,7 +133,7 @@ possible, GoodAIPlayer has to know a lot more about the TicTacToe game,
 including the win, lose, and tie conditions. Thus, high coupling can be an 
 issue with GoodAIPlayer, Board, and TicTacToe.
 
-4. Problems
+5. Problems
 ===========
 
 1. GoodAIPlayer did not choose the optimal moves, so a more concise weight 
@@ -146,7 +146,7 @@ Rather, the functionality of the project with its AIs were the priority.
 Modifications had to be made to access modifiers for methods and members 
 of classes in order to make them visible for unit tests.
 
-5. Metrics
+6. Metrics
 ==========
 
 The following is a very rough estimate of time spent.
@@ -159,7 +159,7 @@ The following is a very rough estimate of time spent.
 * Documentation: 120 minutes
 * Total: 810 minutes (13.5 hours)
 
-6. Source Control
+7. Source Control
 =================
 
 This project is managed using Git and located on Github at:  
@@ -168,7 +168,7 @@ https://github.com/jenzie/tictactoe
 The commit log can also be accessed in the changelog.txt file in the target/
 directory of the project.
 
-7. Research
+8. Research
 ===========
 
 Research was conducted to find the best moves for the first and second 
@@ -193,7 +193,7 @@ http://students.cs.byu.edu/~cs670ta/Lectures/Minimax.html
 * Mixed Strategies and Minimax  
 http://students.cs.byu.edu/~cs670ta/Lectures/Minimax2.html
 
-8. Conclusion
+9. Conclusion
 =============
 
 This project is a playable implementation of Tic-Tac-Toe. Players range 
