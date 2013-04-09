@@ -86,7 +86,6 @@ public class OkayAIPlayer extends Player {
 					}
 				}
 			}
-		}
-		return null;
+		} return null;
 	}
 }
