@@ -176,8 +176,8 @@ simply calling the wrong function.
 This project is managed using Git and located on Github at:  
 https://github.com/jenzie/tictactoe
 
-The commit log can also be accessed in the changelog.txt file in the target/
-directory of the project.
+The commit log can also be accessed in the changelog.txt file in the 
+root/target/ directory of the project.
 
 8. Research
 ===========
@@ -209,21 +209,22 @@ http://students.cs.byu.edu/~cs670ta/Lectures/Minimax2.html
 
 This project is a playable implementation of Tic-Tac-Toe. Players range 
 from human, bad, to good. Albeit, only one player type actually implements 
-a good Tic-Tac-Toe strategy compared to HumanPlayer, the GoodAIPlayer 
-will always win or tie. With time as one of the biggest constraints, the 
-design was neglected to factor in testabilty. Reusability was considered 
-to make the project as easily modified into similar games, such as 
-Connect 4, as easy as possible. However, good software engineering 
-practices should have considered all "-ilitiy" factors, no matter what 
-the constraints were. Additionally, testing was done at the completion 
-of every player, except for GoodAIPlayer where unit testing was started 
-early for debugging purposes. Test-Driven Development could have been 
-an option, but was not considered due to time constraints and the goal 
-of creating a functional program as the top priority. Lastly, the 
-documentation and quality assurance process was left towards the 
-completion of the project. If time was not constraint, as it was 
+a good enough Tic-Tac-Toe strategy comparable to HumanPlayer, that player--
+the GoodAIPlayer-- will always win or tie.
+
+With time as one of the biggest constraints, the design neglected to factor 
+in testabilty. Reusability was considered to make the project as easily 
+modified into similar games, such as Connect 4, as easy as possible. H
+owever, good software engineering practices should have considered all 
+"-ilitiy" factors, no matter what the constraints were. Additionally, 
+testing was done at the completion of every player, except for GoodAIPlayer 
+where unit testing was started early for debugging purposes. Test-Driven 
+Development could have been an option, but was not considered due to time 
+constraints and the goal of creating a functional program as the top priority. 
+Lastly, the documentation and quality assurance process was left until the 
+near completion of the project. If time was not constraint, as it was 
 repeatedly mentioned, documentation would've been done while classes 
 and methods within classes were written.
 
 As a whole, the project meets all requirements and more (because of the 
-various AIs implemented).
+various AIs implemented, and the ability to play a game with two Human players).
