@@ -159,6 +159,17 @@ The following is a very rough estimate of time spent.
 * Documentation: 120 minutes
 * Total: 810 minutes (13.5 hours)
 
+The following is the source lines of code written.
+* Product: 838
+* Test: 168
+* Total: 1006
+
+The following is the lines of code per hour.
+* 74.52 lines of code/hour
+
+Note: A lot of the time was spent debugging GoodAIPlayer. The issue was 
+simply calling the wrong function.
+
 7. Source Control
 =================
 
