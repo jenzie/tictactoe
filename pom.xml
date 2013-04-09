@@ -33,7 +33,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>RingMaster.Main</mainClass>
+                            <mainClass>tictactoe.TicTacToe</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
