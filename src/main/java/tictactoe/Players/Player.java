@@ -39,7 +39,7 @@ public abstract class Player {
 	}
 
 	/**
-	 * Gets the type of this player.
+	 * Gets the type of this player (i.e. "Human".)
 	 * @return the player type.
 	 */
 	public String getType() {
@@ -48,7 +48,7 @@ public abstract class Player {
 
 	/**
 	 * Algorithm to determine the move based on the player's strategy.
-	 * @return integer array [x, y]
+	 * @return integer array [x, y] or [row, column].
 	 */
 	public abstract int[] chooseMove();
 
