@@ -41,6 +41,7 @@ public class RandomAIPlayer extends Player {
 
 	@Override
 	public int[] chooseMove() {
+		// get a list of empty tiles; choose one of them randomly
 		int[][] validMoves = board.getValidMoves();
 		return validMoves[randomGen.nextInt(validMoves.length)];
 	}
